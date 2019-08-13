@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>GrayRainbow</groupId>
+  <artifactId>FileTools</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <build>
+		<!--打包生成的文件名称 这里一共会生成两个文件 一个是不带依赖的 不能运行 -->
+		<finalName>File</finalName>
+		<plugins>
+			<!--(start) for package jar with dependencies -->
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<!--这里来指定主类 意思打包成可以运行的jar包时 可以使用 -->
+							<mainClass>com.file.main.FileMain</mainClass>
+						</manifest>
+					</archive>
+					<descriptorRefs>
+						<!--这里是生成有依赖包的后面的名字的添加的文字 -->
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id> <!-- this is used for inheritance merges -->
+						<phase>package</phase> <!-- bind to the packaging phase -->
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!--(end) for package jar with dependencies -->
+		</plugins>
+	</build>
+</project>
